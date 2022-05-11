@@ -68,7 +68,6 @@ class Solution {
 		}
 	    }
 	}
-
 	return possibleCount;
     }
 }
