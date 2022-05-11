@@ -27,12 +27,14 @@ class Conference implements Comparable<Conference> {
     }
 
     /*
-     * conference A that start 2 and end 2 conference B that start 1 and end 2 if A
-     * is in front of B on sorted array, my solution select conference A first, and
-     * reject B because B's start time precedes A's end time This makes the answer
-     * to be 1. However, the correct answer is 2 in case B is in front of A on
-     * sorted array In that case, solution function select B, and A is also
-     * selected.
+     * conference A that start 2 and end 2 
+     * conference B that start 1 and end 2 
+     * if A is in front of B on sorted array, 
+     * my solution select conference A first, and reject B 
+     * because B's start time precedes A's end time 
+     * This makes the answer to be 1. However, the correct answer is 2 
+     * in case B is in front of A on sorted array In that case, 
+     * solution function select B, and A is also selected.
      */
     @Override
     public int compareTo(Conference o) {
