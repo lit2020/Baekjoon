@@ -38,8 +38,8 @@ class Conference implements Comparable<Conference> {
     public int compareTo(Conference o) {
 	if (this.end != o.end)
 	    return this.end - o.end;
-	else
-	    return this.start - o.start;
+	
+	return this.start - o.start;
     }
 }
 
