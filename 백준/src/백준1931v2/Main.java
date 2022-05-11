@@ -10,7 +10,6 @@
  * 	   시작시간이 빠른 순으로 정렬해야한다
  */
 
-
 package 백준1931v2;
 
 import java.io.BufferedReader;
@@ -27,51 +26,48 @@ class Conference implements Comparable<Conference> {
 	end = endTime;
     }
 
-    @Override
     /*
-     * conference A that start 2 and end 2
-     * conference B that start 1 and end 2
-     * if A is in front of B on sorted array,
-     * my solution select conference A first, and reject B
-     * because B's start time precedes A's end time
-     * This makes the answer to be 1. However, the correct answer is 2
-     * in case B is in front of A on sorted array
-     * In that case, solution function select B, and A is also selected.
+     * conference A that start 2 and end 2 conference B that start 1 and end 2 if A
+     * is in front of B on sorted array, my solution select conference A first, and
+     * reject B because B's start time precedes A's end time This makes the answer
+     * to be 1. However, the correct answer is 2 in case B is in front of A on
+     * sorted array In that case, solution function select B, and A is also
+     * selected.
      */
+    @Override
     public int compareTo(Conference o) {
-	if(this.end != o.end)
+	if (this.end != o.end)
 	    return this.end - o.end;
 	else
 	    return this.start - o.start;
     }
 }
 
-
 class Solution {
 
     protected int solution(Conference[] confs) {
 
 	int possibleCount;
-	
+
 	// sort conference by end time by ascending order
 	Arrays.sort(confs);
-	
+
 	// select a conference that end most early
 	int endOflastConf;
 	int i;
-	for(i = 0; i < confs.length; i++) {
-	    if(confs[i].end >= confs[i].start)
+	for (i = 0; i < confs.length; i++) {
+	    if (confs[i].end >= confs[i].start)
 		break;
 	}
-	
+
 	// start time > end time for all conference
-	if(i == confs.length)
+	if (i == confs.length)
 	    return 0;
 	else
 	    endOflastConf = confs[i].end;
-	
+
 	possibleCount = 1;
-	for (int j = i+1; j < confs.length; j++) {
+	for (int j = i + 1; j < confs.length; j++) {
 	    Conference conf = confs[j];
 	    if (conf.start >= endOflastConf) {
 		if (conf.start <= conf.end) {
@@ -109,9 +105,7 @@ public class Main {
 
 	// 사용자 입력
 	input();
-
 	int answer = (new Solution()).solution(confs);
-
 	// Debug 정렬 상태 확인
 	for (int i = 0; i < confs.length; i++) {
 	    System.out.print(confs[i].start + " ");
