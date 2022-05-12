@@ -2,7 +2,7 @@
  * 05/05/2022 ki-woong Kim
  */
 
-package πÈ¡ÿ1789;
+package Î∞±Ï§Ä1789;
 
 import java.util.Scanner;
 

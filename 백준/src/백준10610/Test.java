@@ -1,4 +1,4 @@
-package πÈ¡ÿ10610;
+package Î∞±Ï§Ä10610;
 
 public class Test {
 

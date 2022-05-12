@@ -1,14 +1,14 @@
 /**
  * DATE : 2022.05.10 
  * USER : KI-WOONG KIM
- * FROM : https://www.acmicpc.net/problem/1764 (µèº¸Àâ)
+ * FROM : https://www.acmicpc.net/problem/1764 (ï¿½èº¸ï¿½ï¿½)
  * ALGORITMN : Set, Sorting
- * NOTE : ÀÔ·Â¿¡ Áßº¹ÀÌ ¾ø´Ù´Â Á¶°ÇÀÌ ÀÖÀ¸¹Ç·Î HashSet ÀÚ·á±¸Á¶¸¦ ÀÌ¿ëÇÏ¸é add¿Í search
- * 	    ¿¬»ê ¸ðµÎ »ó¼ö½Ã°£ O(1)¿¡ ¼öÇàÀÌ °¡´ÉÇÏ´Ù. 
+ * NOTE : ï¿½Ô·Â¿ï¿½ ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ HashSet ï¿½Ú·á±¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¸ï¿½ addï¿½ï¿½ search
+ * 	    ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ O(1)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. 
  */
 
 
-package ¹éÁØ1764;
+package ë°±ì¤€1764;
 
 import java.io.BufferedReader;
 import java.io.IOException;

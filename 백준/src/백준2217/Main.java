@@ -1,4 +1,4 @@
-package πÈ¡ÿ2217;
+package Î∞±Ï§Ä2217;
 
 import java.util.Scanner;
 
@@ -17,6 +17,7 @@ public class Main {
     for(int i = 0; i < number_of_rope; i++) {
       load_of_ropes[i] = Integer.parseInt(scanner.nextLine());
     }
+    scanner.close();
   }
   
   /*

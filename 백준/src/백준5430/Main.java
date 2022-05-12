@@ -5,7 +5,7 @@
  * 
  * NOTE :
  */
-package πÈ¡ÿ5430;
+package Î∞±Ï§Ä5430;
 
 import java.io.BufferedReader;
 import java.io.IOException;

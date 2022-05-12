@@ -1,4 +1,4 @@
-package πÈ¡ÿ1541;
+package Î∞±Ï§Ä1541;
 
 public class Test {
   public static void main(String[] args) {

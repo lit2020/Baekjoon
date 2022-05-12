@@ -1,6 +1,6 @@
 /* 05 / 07 / 2022 */
 
-package πÈ¡ÿ1181;
+package Î∞±Ï§Ä1181;
 
 import java.io.BufferedReader;
 import java.io.IOException;

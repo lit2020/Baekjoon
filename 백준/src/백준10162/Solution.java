@@ -1,4 +1,4 @@
-package πÈ¡ÿ10162;
+package Î∞±Ï§Ä10162;
 
 import java.util.Scanner;
 

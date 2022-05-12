@@ -1,5 +1,5 @@
 /* 05 /07 /2022 */
-package πÈ¡ÿ4949;
+package Î∞±Ï§Ä4949;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -2,7 +2,7 @@
  * 05 / 05 / 2022   ki-woong Kim
  */
 
-package πÈ¡ÿ1946;
+package Î∞±Ï§Ä1946;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -2,7 +2,7 @@
  * 05.04.2022
  */
 
-package πÈ¡ÿ10610;
+package Î∞±Ï§Ä10610;
 
 import java.util.Arrays;
 import java.util.Collections;

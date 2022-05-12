@@ -2,15 +2,15 @@
  * SOLVED : True
  * DATE : 2022.05.11
  * USER : KI-WOONG KIM
- * FROM : https://www.acmicpc.net/problem/1931 (È¸ÀÇ½Ç ¹èÁ¤)
+ * FROM : https://www.acmicpc.net/problem/1931 (È¸ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½)
  * ALGORITMN : Greedy, Sorting
- * NOTE : compatibleÇÑ jobµéÀÇ ÃÖ´ë°³¼ö¸¦ ¼¼´Â ¹®Á¦ 
- * 	  greed template·Î¼­ endtime¸¦ »ç¿ëÇÏ¿© endtimeÀÌ ºü¸¥ ¼øÀ¸·Î ¼±ÅÃÇÑ´Ù
- * 	   ¹®Á¦¿¡¼­ È¸ÀÇÀÇ ½ÃÀÛ½Ã°£°ú Á¾·á½Ã°£ÀÌ °°À» ¼ö ÀÖÀ¸¹Ç·Î endtimeÀÌ °°Àº °æ¿ì¿¡´Â
- * 	   ½ÃÀÛ½Ã°£ÀÌ ºü¸¥ ¼øÀ¸·Î Á¤·ÄÇØ¾ßÇÑ´Ù
+ * NOTE : compatibleï¿½ï¿½ jobï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ë°³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+ * 	  greed templateï¿½Î¼ï¿½ endtimeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ endtimeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
+ * 	   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ endtimeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½
+ * 	   ï¿½ï¿½ï¿½Û½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½Ñ´ï¿½
  */
 
-package ¹éÁØ1931v2;
+package ë°±ì¤€1931v2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -105,16 +105,16 @@ public class Main {
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
-	// »ç¿ëÀÚ ÀÔ·Â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 	input();
 	int answer = (new Solution()).solution(confs);
-	// Debug Á¤·Ä »óÅÂ È®ÀÎ
+	// Debug ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 	for (int i = 0; i < confs.length; i++) {
 	    System.out.print(confs[i].start + " ");
 	    System.out.println(confs[i].end);
 	}
 
-	// Á¤´ä Ãâ·Â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	printAnswer(answer);
     }
 }

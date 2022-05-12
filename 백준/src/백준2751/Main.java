@@ -1,4 +1,4 @@
-package πÈ¡ÿ2751;
+package Î∞±Ï§Ä2751;
 
 import java.util.Arrays;
 import java.util.Scanner;

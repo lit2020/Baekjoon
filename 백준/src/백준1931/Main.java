@@ -2,12 +2,12 @@
  * SOLVED : True
  * DATE : 2022.05.11
  * USER : KI-WOONG KIM
- * FROM : https://www.acmicpc.net/problem/1931 (È¸ÀÇ½Ç ¹èÁ¤)
+ * FROM : https://www.acmicpc.net/problem/1931 (È¸ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½)
  * ALGORITMN : Greedy, Sorting
  * NOTE : 
  */
 
-package ¹éÁØ1931;
+package ë°±ì¤€1931;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -71,6 +71,7 @@ class Solution {
 	return possibleCount;
     }
 }
+
 
 public class Main {
 
