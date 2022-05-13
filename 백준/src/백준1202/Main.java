@@ -96,7 +96,7 @@ class Solution {
 		    dbg_answer.add("jew[" + mass + ", " + value + "] -> "
 		    			+ bag[j] + " bag No." + j + "  ");
 		    if( minBagIdx != j) {
-			String temp = dbg_answer.get(dbg_answer.size()) + "<= No." + minBagIdx;
+			String temp = dbg_answer.get(dbg_answer.size() - 1) + "<= No." + minBagIdx;
 			dbg_answer.remove(dbg_answer.size());
 			dbg_answer.add(temp);
 		    }
@@ -110,6 +110,7 @@ class Solution {
 	return answer;
     }
 }
+
 
 public class Main {
     // 디버깅 변수
@@ -149,7 +150,7 @@ public class Main {
 	System.out.print(answer);
     }
     
-    public static void dbg_init() {
+    private static void dbg_init() {
 	jewelry = new int[dbg_nJewelry][2];
 	bag_size = new int[dbg_nBag];
 	
@@ -198,7 +199,7 @@ public class Main {
 
     }
     
-    public static void debug() {
+    	private static void debug() {
 	dbg_init();
 	Solution sol = new Solution();
 	int answer = sol.solution(jewelry, bag_size);
