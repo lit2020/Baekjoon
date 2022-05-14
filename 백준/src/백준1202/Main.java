@@ -56,14 +56,17 @@ class Solution {
 	}
 
 	int mid = (begin + end) / 2;
-	int leftSection = searchUsableBag(isUsed, begin, mid);
-	int rightSection = searchUsableBag(isUsed, mid + 1, end);
-	if (leftSection == -1 && rightSection == -1)
-	    return -1;
-	if (leftSection == -1)
-	    return rightSection;
-	return leftSection;
-
+	int leftSection, rightSection;
+	leftSection = searchUsableBag(isUsed, begin, mid);
+	if (leftSection != -1) // 왼쪽 구간에 빈가방있음
+	    return leftSection;
+	else {
+	    rightSection = searchUsableBag(isUsed, mid + 1, end);
+	    if (rightSection != -1) // 오른쪽 구간에 빈가방 있음
+		return rightSection;
+	    
+	    return -1; // 양쪽 모두 빈가방 없음
+	}
     }
 
     // 정답이 int의 범위를 넘어 오버플로우가 발생
@@ -73,8 +76,8 @@ class Solution {
 
 	long answer = 0;
 
-	// 보석정보(무게,가치)와 가방정보(용량)을 각각 정렬
-	// 보석은 가치의 내림차순, 가방은 오름차순으로 정렬
+	// 보석정보(무게,가치)와 가방정보(용량)을 각각 정렬 : O(nlgn)
+	// 보석은 가치의 내림차순, 가방은 오름차순으로 정렬 : O(klgk)
 	Arrays.sort(jew, new Comparator<int[]>() {
 	    @Override
 	    public int compare(int[] o1, int[] o2) {
@@ -85,22 +88,21 @@ class Solution {
 	});
 	Arrays.sort(bag);
 
-	boolean[] isUsed = new boolean[bag.length]; // i번째 이미 가방이 사용되었는지
-	int nUsableBag = bag.length; // 사용 가능한(빈 채로 남아있는) 가방의 수
-	// 가장 가치가 큰 보석부터 선택한다
+	boolean[] isUsed = new boolean[bag.length];
+	int nUsableBag = bag.length;
+	// 가장 가치가 큰 보석부터 선택한다 : O(n)
 	for (int i = 0; i < jew.length; i++) {
-	    if (nUsableBag == 0) // 모든 가방을 사용함
+	    if (nUsableBag == 0)
 		break;
 
-	    int[] jewelry = jew[i]; // 선택한 보석
-	    int mass = jewelry[0]; // 선택한 보석의 무게
-	    int value = jewelry[1]; // 선택한 보석의 가치
+	    int[] jewelry = jew[i];
+	    int mass = jewelry[0];
+	    int value = jewelry[1];
 
-	    // 선택한 보석을 넣을 가방을 찾는다.
-	    // 크기가 작은 가방부터 순서대로 탐색하여, 보석을 넣을수 있는 첫번째 가방에 넣는다.
+	    // 선택한 보석을 넣을 가방을 찾는다. : O(k)
 	    int minBagIdx = binarySearch(bag, mass);
-	    if (minBagIdx == -1) // 보석의 무게가 모든 가방의 용량보다 큼 -> 이 보석은 담을수없음
-		continue; // 다음 보석으로 이동
+	    if (minBagIdx == -1)
+		continue;
 
 	    // 보석을 넣을 수 있는 가방들 중 정렬상 가장 앞에있는 가방을 선택
 	    int bagIdx = searchUsableBag(isUsed, minBagIdx, bag.length - 1);
@@ -127,8 +129,8 @@ public class Main {
     private static boolean rdbg = true; // 랜덤입력에 의한 디버그
     private static int rdbg_nJewelry = 10;
     private static int rdbg_max_weight = 20;
-    private static int rdbg_min_value = 1;
-    private static int rdbg_max_value = 20;
+    private static int rdbg_min_value = 10;
+    private static int rdbg_max_value = 30;
     private static int rdbg_nBag = 10;
     private static int rdbg_min_capa = 2;
     private static int rdbg_max_capa = 20;
