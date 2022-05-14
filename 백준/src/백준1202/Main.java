@@ -21,53 +21,49 @@ import java.util.Random;
 class Solution {
     protected ArrayList<String> dbg_answer;
 
+    /**
+     * 
+     * @param sorted Bag sorted by ascending order
+     * @param target Weight of jewelry that would be pushed in a bag.
+     * @return minimal bag's index on @sorted that can contain the jewelry -1 if the
+     *         jewelry can't be pushed in any bag
+     */
     protected static int binarySearch(int[] sorted, int target) {
-	if (target > sorted[sorted.length - 1])
+	if (target > sorted[sorted.length - 1]) // 보석의 무게가 모든 가방의 용량보다 큼
 	    return -1;
-	if (target < sorted[0])
-	    return 0;
+
 	int low = 0;
 	int high = sorted.length - 1;
 	int mid = 0;
 	while (low < high) {
 	    mid = (low + high) / 2;
 	    // target보다 작지 않은 가장 작은값을 찾아야하므로 high=mid-1이 아님
-	    if (sorted[mid] > target)
+	    if (sorted[mid] >= target)
 		high = mid;
 	    else if (sorted[mid] < target)
 		low = mid + 1;
-	    else
-		break;
 	}
-	if (low == high)
-	    return low;
 
-	int startOfTarget = mid;
-	while (low < startOfTarget) {
-	    int mmid = (low + startOfTarget) / 2;
-	    if (sorted[mmid] < target)
-		low = mmid + 1;
-	    else if (sorted[mmid] == target)
-		startOfTarget = mmid;
-	}
-	return startOfTarget;
+	// 보석을 담을 수 있는 가방의 가장 작은(앞에있는) 인덱스
+	return low;
     }
 
-    protected int minUsableBag(boolean[] isUsed, int begin) {
-	int low = begin;
-	int high = isUsed.length - 1;
-	int mid = low;
-	while (low < high) {
-	    mid = (low + high) / 2;
-	    if (isUsed[mid])
-		low = mid + 1;
-	    else
-		high = mid;
+    protected static int searchUsableBag(boolean[] isUsed, int begin, int end) {
+	if (begin == end) {
+	    if (isUsed[begin])
+		return -1;
+	    return begin;
 	}
-	// 탐색한 가방들이 이미 모두 사용된 상황
-	if (isUsed[low])
+
+	int mid = (begin + end) / 2;
+	int leftSection = searchUsableBag(isUsed, begin, mid);
+	int rightSection = searchUsableBag(isUsed, mid + 1, end);
+	if (leftSection == -1 && rightSection == -1)
 	    return -1;
-	return low;
+	if (leftSection == -1)
+	    return rightSection;
+	return leftSection;
+
     }
 
     // 정답이 int의 범위를 넘어 오버플로우가 발생
@@ -107,9 +103,9 @@ class Solution {
 		continue; // 다음 보석으로 이동
 
 	    // 보석을 넣을 수 있는 가방들 중 정렬상 가장 앞에있는 가방을 선택
-	    int bagIdx = this.minUsableBag(isUsed, minBagIdx);
-	    if (bagIdx == -1)
-		continue;
+	    int bagIdx = searchUsableBag(isUsed, minBagIdx, bag.length - 1);
+	    if (bagIdx == -1) // 사용할 수 있는 가방이 없음
+		continue; // 다음 보석으로 이동
 	    dbg_answer.add("jew[" + mass + ", " + value + "] -> " + bag[bagIdx] + " bag No." + bagIdx + "  ");
 	    if (minBagIdx != bagIdx) {
 		String temp = dbg_answer.get(dbg_answer.size() - 1) + "<= No." + minBagIdx;
@@ -125,8 +121,6 @@ class Solution {
     }
 
 }
-
-
 
 public class Main {
     // 디버깅 변수
@@ -206,11 +200,11 @@ public class Main {
     }
 
     private static void dbg_initialState() {
-	if(!rdbg) {
+	if (!rdbg) {
 	    rdbg_nJewelry = nJewelry;
 	    rdbg_nBag = nBag;
 	}
-	
+
 	Arrays.sort(jewelry, new Comparator<int[]>() {
 	    @Override
 	    public int compare(int[] o1, int[] o2) {
@@ -251,15 +245,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
 	if (rdbg) {
 	    debug();
-	} 
-	else {
+	} else {
 	    input();
-	    dbg_initialState();
 	    Solution sol = new Solution();
 	    BigInteger answer = BigInteger.valueOf(sol.solution(jewelry, bag_size));
-	    for (String dbg_info : sol.dbg_answer)
-		System.out.println(dbg_info);
-	    System.out.println("total : " + answer.toString());
 	    printAnswer(answer.toString());
 	}
 
