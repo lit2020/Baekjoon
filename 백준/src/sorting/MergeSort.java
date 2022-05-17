@@ -15,7 +15,7 @@ public class MergeSort<E extends Comparable<E>> extends Sort<E> {
 	this.mergeSort(arr, 0, arr.length - 1);
     }
 
-    private void mergeSort(E[] arr, int left, int right) {
+    protected void mergeSort(E[] arr, int left, int right) {
 	if (left < right) {
 	    int mid = (left + right) / 2;
 	    this.mergeSort(arr, left, mid);

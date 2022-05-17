@@ -15,7 +15,7 @@ public class QuickSort<E extends Comparable<E>> extends Sort<E> {
 	this.quickSort(arr, 0, arr.length - 1);
     }
 
-    private void quickSort(E[] arr, int left, int right) {
+    protected void quickSort(E[] arr, int left, int right) {
 	// target array has less than 2 elements;
 	if (left >= right)
 	    return;

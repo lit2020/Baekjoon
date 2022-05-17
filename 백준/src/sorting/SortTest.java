@@ -14,10 +14,15 @@ class Test {
     static final QuickSort<Integer> qs = new QuickSort<Integer>(false);
     static final InsertionSort<Integer> is = new InsertionSort<Integer>(false);
     static final MergeSort<Integer> ms = new MergeSort<Integer>(false);
+    static final SelectionSort<Integer> ss = new SelectionSort<Integer>(false);
+    static final BubbleSort<Integer> bs = new BubbleSort<Integer>(false);
+    static final HeapSort<Integer> hs = new HeapSort<Integer>(false);
+    static final Sort<Integer> sortMethod = hs;
+    
     static final Random random = new Random();
-    static final int T_num = 10;
-    static final int T_SIZE = 100;
-    static final int MAX_VALUE = 1000;
+    static final int T_num = 100;
+    static final int T_SIZE = 1000;
+    static final int MAX_VALUE = 2000;
     static final int MIN_VALUE = 0;
     static final int RANGE = MAX_VALUE - MIN_VALUE;
     static Integer[] ARRAY = new Integer[T_SIZE];
@@ -25,21 +30,28 @@ class Test {
     static final String MSG_CLEAR = "CLEAR";
 }
 
+
 public class SortTest {
     static final boolean mode_random = true;
     static final boolean[] t_result = new boolean[Test.T_num];
     static final ArrayList<String> counter_example = new ArrayList<String>(Test.T_num);
-
+    
     public static void main(String[] args) throws IOException {
 	for (int i = 0; i < Test.T_num; i++) {
+	    // Get input
 	    if (mode_random)
 		random_init();
 	    else
 		init();
-	    t_result[i] = test(Test.ms);
+	    
+	    // Run Test
+	    t_result[i] = test(Test.sortMethod);
+	    
+	    // Add counter example if the answer is incorrect
 	    if (!t_result[i])
 		counter_example.add(Arrays.toString(Test.ARRAY));
 	}
+	
 	if (counter_example.size() == 0)
 	    System.out.println(Test.MSG_CLEAR);
 	else {
