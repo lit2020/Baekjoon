@@ -1,5 +1,11 @@
 package sorting;
 
+/**
+ * HeapRoot를 입력받아 부분정렬 가능
+ * pros : Stable performance of O(nlgn) even in the worst case
+ * 	  No additional memory is needed
+ * cons : Unstable sort, poor performance compared to other O(nlgn) algorithm
+ */
 public class HeapSort<E extends Comparable<E>> extends Sort<E> {
 
     // Index where the sorting starts
@@ -16,21 +22,16 @@ public class HeapSort<E extends Comparable<E>> extends Sort<E> {
     @Override
     public void sort(E[] arr) {
 	this.heapSort(arr, 0, arr.length - 1);
-	/*
-	 * E[] temp = Arrays.copyOf(arr, arr.length + HEAP_ROOT); for(int i = arr.length
-	 * - 1; i >= 0; i--) { temp[i + HEAP_ROOT] = temp[i]; } this.heapSort(temp,
-	 * HEAP_ROOT, arr.length); for(int i = 0; i < arr.length; i++) { arr[i] =
-	 * (E)temp[i + 1]; }
-	 */
     }
 
     protected void heapSort(E[] arr, int root, int heapSize) {
+
 	HeapSort.HEAP_ROOT = root;
-	int IdxFirstNonLeaf = heapSize / 2;
+	int IdxFirstNonLeaf = (root + heapSize) / 2;
 	for (int i = IdxFirstNonLeaf; i >= root; i--) {
 	    this.adjust(arr, i, heapSize);
 	}
-	for (int i = 0; i < heapSize; i++) {
+	for (int i = 0; i < heapSize - root; i++) {
 	    E maxElement = this.removeMax(arr, heapSize - i);
 	    arr[heapSize - i] = maxElement;
 	}
@@ -39,17 +40,18 @@ public class HeapSort<E extends Comparable<E>> extends Sort<E> {
     private void adjust(E[] arr, int start, int heapSize) {
 	int IdxParent = start;
 	E parent = arr[IdxParent];
-	while (IdxParent <= heapSize / 2) {
+	// if left child index is out of heap, parent is leaf node
+	while (this.leftChildIndexOf(IdxParent) <= heapSize) {
 	    int IdxLeftChild = leftChildIndexOf(IdxParent);
 	    int IdxRightChild = rightChildIndexOf(IdxParent);
 	    int IdxBiggerChild = IdxLeftChild;
 	    if (IdxRightChild <= heapSize) {
-		if (arr[IdxRightChild].compareTo(arr[IdxLeftChild]) >= 0) {
+		if (this.compare(arr[IdxRightChild], arr[IdxLeftChild]) >= 0) {
 		    IdxBiggerChild = IdxRightChild;
 		}
 	    }
 
-	    if (arr[IdxBiggerChild].compareTo(parent) >= 0) {
+	    if (this.compare(arr[IdxBiggerChild], parent) >= 0) {
 		arr[IdxParent] = arr[IdxBiggerChild];
 		IdxParent = IdxBiggerChild;
 		continue;
@@ -73,5 +75,4 @@ public class HeapSort<E extends Comparable<E>> extends Sort<E> {
 	this.adjust(arr, HEAP_ROOT, heapSize - 1);
 	return maxElement;
     }
-
 }

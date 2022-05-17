@@ -18,7 +18,7 @@ public class BubbleSort<E extends Comparable<E>> extends Sort<E> {
     protected void bubbleSort(E[] arr, int left, int right) {
 	for (int i = right; i > left; i--) {
 	    for (int j = left; j < i; j++) {
-		if (arr[j].compareTo(arr[j + 1]) > 0) {
+		if (this.compare(arr[j], arr[j + 1]) > 0) {
 		    this.swap(arr, j, j + 1);
 		}
 	    }

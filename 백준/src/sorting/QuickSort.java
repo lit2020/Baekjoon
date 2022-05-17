@@ -34,10 +34,10 @@ public class QuickSort<E extends Comparable<E>> extends Sort<E> {
 	do {
 	    do {
 		++i;
-	    } while (arr[i].compareTo(pivot) < 0 && i < right);
+	    } while (this.compare(arr[i], pivot) < 0 && i < right);
 	    do {
 		--j;
-	    } while (arr[j].compareTo(pivot) > 0);
+	    } while (this.compare(arr[j], pivot) > 0);
 	    if (i < j)
 		swap(arr, j, i);
 	} while (i < j);

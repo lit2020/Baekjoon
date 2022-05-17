@@ -3,7 +3,7 @@ package sorting;
 
 public abstract class Sort<E extends Comparable<E>> {
 
-    // Boolean is true if descending order
+    // boolean is true if descending order
     protected boolean reverseOrder;
     
     // Constructor

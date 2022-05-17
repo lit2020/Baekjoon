@@ -19,7 +19,7 @@ public class SelectionSort<E extends Comparable<E>> extends Sort<E> {
 	for(int i = right; i > 0; i--) {
 	    int idxLastOrderElement = 0;
 	    for(int j = 1; j <= i; j++) {
-		if(arr[j].compareTo(arr[idxLastOrderElement]) >= 0) {
+		if(this.compare(arr[j], arr[idxLastOrderElement]) >= 0) {
 		    idxLastOrderElement = j;
 		}
 	    }

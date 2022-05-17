@@ -31,7 +31,7 @@ public class MergeSort<E extends Comparable<E>> extends Sort<E> {
 	int j = mid + 1;
 	int k = left;
 	while (i <= mid && j <= right) {
-	    if (arr[i].compareTo(arr[j]) <= 0) {
+	    if (this.compare(arr[i], arr[j]) <= 0) {
 		sorted[k++] = arr[i++];
 	    } else {
 		sorted[k++] = arr[j++];
