@@ -15,7 +15,10 @@ import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Random;
 
 class Solution {
@@ -64,40 +67,29 @@ class Solution {
 	    rightSection = searchUsableBag(isUsed, mid + 1, end);
 	    if (rightSection != -1) // 오른쪽 구간에 빈가방 있음
 		return rightSection;
-	    
+
 	    return -1; // 양쪽 모두 빈가방 없음
 	}
     }
 
     // 정답이 int의 범위를 넘어 오버플로우가 발생
-    protected long solution(int[][] jew, int[] bag) {
+    protected long solution(PriorityQueue<int[]> jewelry, int[] bag) {
 	// 디버깅
-	dbg_answer = new ArrayList<String>(jew.length);
+	dbg_answer = new ArrayList<String>(jewelry.size());
 
 	long answer = 0;
 
-	// 보석정보(무게,가치)와 가방정보(용량)을 각각 정렬 : O(nlgn)
-	// 보석은 가치의 내림차순, 가방은 오름차순으로 정렬 : O(klgk)
-	Arrays.sort(jew, new Comparator<int[]>() {
-	    @Override
-	    public int compare(int[] o1, int[] o2) {
-		if (o1[1] == o2[1])
-		    return o1[0] - o2[0];
-		return o2[1] - o1[1];
-	    }
-	});
+	// 가방은 오름차순으로 정렬 : O(klgk)
 	Arrays.sort(bag);
 
 	boolean[] isUsed = new boolean[bag.length];
-	int nUsableBag = bag.length;
-	// 가장 가치가 큰 보석부터 선택한다 : O(n)
-	for (int i = 0; i < jew.length; i++) {
-	    if (nUsableBag == 0)
-		break;
 
-	    int[] jewelry = jew[i];
-	    int mass = jewelry[0];
-	    int value = jewelry[1];
+	// 가장 가치가 큰 보석부터 선택한다 : O(n)
+	while (!jewelry.isEmpty()) {
+
+	    int[] jew = jewelry.remove();
+	    int mass = jew[0];
+	    int value = jew[1];
 
 	    // 선택한 보석을 넣을 가방을 찾는다. : O(k)
 	    int minBagIdx = binarySearch(bag, mass);
@@ -108,6 +100,7 @@ class Solution {
 	    int bagIdx = searchUsableBag(isUsed, minBagIdx, bag.length - 1);
 	    if (bagIdx == -1) // 사용할 수 있는 가방이 없음
 		continue; // 다음 보석으로 이동
+
 	    dbg_answer.add("jew[" + mass + ", " + value + "] -> " + bag[bagIdx] + " bag No." + bagIdx + "  ");
 	    if (minBagIdx != bagIdx) {
 		String temp = dbg_answer.get(dbg_answer.size() - 1) + "<= No." + minBagIdx;
@@ -116,7 +109,6 @@ class Solution {
 	    }
 	    answer += value;
 	    isUsed[bagIdx] = true;
-	    --nUsableBag;
 	}
 
 	return answer;
@@ -126,7 +118,7 @@ class Solution {
 
 public class Main {
     // 디버깅 변수
-    private static boolean rdbg = true; // 랜덤입력에 의한 디버그
+    private static boolean rdbg = false; // 랜덤입력에 의한 디버그
     private static int rdbg_nJewelry = 10;
     private static int rdbg_max_weight = 20;
     private static int rdbg_min_value = 10;
@@ -137,7 +129,7 @@ public class Main {
 
     private static int nJewelry;
     private static int nBag;
-    private static int[][] jewelry;
+    private static PriorityQueue<int[]> jewelry;
     private static int[] bag_size;
 
     private static void input() throws IOException {
@@ -145,14 +137,23 @@ public class Main {
 	String[] number = br.readLine().split(" ");
 	nJewelry = Integer.parseInt(number[0]);
 	nBag = Integer.parseInt(number[1]);
-	jewelry = new int[nJewelry][2];
 	bag_size = new int[nBag];
+	jewelry = new PriorityQueue<int[]>(new Comparator<int[]>() {
+	    @Override
+	    public int compare(int[] o1, int[] o2) {
+		if (o1[1] == o2[1])
+		    return o1[0] - o2[0];
+		return o2[1] - o1[1];
+	    }
+	});
 
 	String[] line = null;
 	for (int i = 0; i < nJewelry; i++) {
 	    line = br.readLine().split(" ");
-	    jewelry[i][0] = Integer.parseInt(line[0]);
-	    jewelry[i][1] = Integer.parseInt(line[1]);
+	    int m = Integer.parseInt(line[0]);
+	    int v = Integer.parseInt(line[1]);
+	    int[] temp = { m, v };
+	    jewelry.add(temp);
 	}
 
 	for (int i = 0; i < nBag; i++) {
@@ -165,39 +166,30 @@ public class Main {
     }
 
     private static void rdbg_init() {
-	jewelry = new int[rdbg_nJewelry][2];
+	jewelry = new PriorityQueue<int[]>(new Comparator<int[]>() {
+	    @Override
+	    public int compare(int[] o1, int[] o2) {
+		if (o1[1] == o2[1])
+		    return o1[0] - o2[0];
+		return o2[1] - o1[1];
+	    }
+	});
 	bag_size = new int[rdbg_nBag];
 
 	// 랜덤값 입력
 	Random rand = new Random();
 	for (int i = 0; i < Math.max(rdbg_nJewelry, rdbg_nBag); i++) {
 	    if (i < rdbg_nJewelry) {
-		jewelry[i][0] = rand.nextInt(rdbg_max_weight) + 1;
-		jewelry[i][1] = rand.nextInt(rdbg_max_value - rdbg_min_value) + rdbg_min_value;
+		int m = rand.nextInt(rdbg_max_weight) + 1;
+		int v = rand.nextInt(rdbg_max_value - rdbg_min_value) + rdbg_min_value;
+		int[] temp = { m, v };
+		jewelry.add(temp);
 	    }
 	    if (i < rdbg_nBag)
 		bag_size[i] = rand.nextInt(rdbg_max_capa - rdbg_min_capa) + rdbg_min_capa;
 	}
 
 	// 보석과 가방 정렬
-	Arrays.sort(jewelry, new Comparator<int[]>() {
-	    @Override
-	    public int compare(int[] o1, int[] o2) {
-		if (o1[1] > o2[1])
-		    return -1;
-		if (o1[1] < o2[1])
-		    return 1;
-		else {
-		    if (o1[0] < o2[0])
-			return -1;
-		    if (o1[0] > o2[0])
-			return 1;
-		    else
-			return 0;
-		}
-	    }
-
-	});
 	Arrays.sort(bag_size);
     }
 
@@ -207,25 +199,21 @@ public class Main {
 	    rdbg_nBag = nBag;
 	}
 
-	Arrays.sort(jewelry, new Comparator<int[]>() {
-	    @Override
-	    public int compare(int[] o1, int[] o2) {
-		if (o1[1] == o2[1])
-		    return o1[0] - o2[0];
-		return o2[1] - o1[1];
-	    }
-	});
 	Arrays.sort(bag_size);
 	// 정렬된 초기상태 출력
+	Queue<int[]> jewelryClone = new PriorityQueue<int[]>(Main.jewelry);
 	System.out.println("보석목록====가방목록");
 	int i = 0;
 	for (i = 0; i < Math.min(rdbg_nJewelry, rdbg_nBag); i++) {
-	    System.out.print(jewelry[i][0] + " " + jewelry[i][1]);
+	    int[] jew = jewelryClone.remove();
+	    System.out.print(jew[0] + " " + jew[1]);
 	    System.out.println("\t No." + i + " " + bag_size[i]);
 	}
 	if (rdbg_nJewelry > rdbg_nBag) {
-	    for (int j = i; j < rdbg_nJewelry; j++)
-		System.out.println(jewelry[j][0] + " " + jewelry[j][1]);
+	    for (int j = i; j < rdbg_nJewelry; j++) {
+		int[] jew = jewelryClone.remove();
+		System.out.println(jew[0] + " " + jew[1]);
+	    }
 	}
 	if (rdbg_nJewelry < rdbg_nBag) {
 	    for (int j = i; j < rdbg_nBag; j++)

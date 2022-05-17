@@ -4,7 +4,7 @@
  * USER : KI-WOONG KIM
  * FROM : https://www.acmicpc.net/problem/2805 (나무 자르기)
  * ALGORITMN : Binary search, Parametric search
- * NOTE :
+ * NOTE : 
  */
 
 package 백준2805;
@@ -62,9 +62,9 @@ public class Main {
 
     private static int nTree;
 
-    private static int target;
+    private static int target; // 필요한 나무 길이
 
-    private static int[] tree;
+    private static int[] tree; // 각 나무의 높이
 
     public static void main(String[] args) {
 	try {

@@ -1,10 +1,10 @@
 /**
  * DATE : 2022.05.10 
  * USER : KI-WOONG KIM
- * FROM : https://www.acmicpc.net/problem/1212 (8���� 2����)
+ * FROM : https://www.acmicpc.net/problem/1212 (8진수 2진수)
  * ALGORITMN : String, Math
- * NOTE : �Է¿� �ߺ��� ���ٴ� ������ �����Ƿ� HashSet �ڷᱸ���� �̿��ϸ� add�� search
- * 	    ���� ��� ����ð� O(1)�� ������ �����ϴ�. 
+ * NOTE : 
+ * 
  */
 
 package 백준1212;

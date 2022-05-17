@@ -2,7 +2,7 @@
  * SOLVED : True
  * DATE : 2022.05.11
  * USER : KI-WOONG KIM
- * FROM : https://www.acmicpc.net/problem/1931 (ȸ�ǽ� ����)
+ * FROM : https://www.acmicpc.net/problem/1931 (회의실 배정)
  * ALGORITMN : Greedy, Sorting
  * NOTE : 
  */

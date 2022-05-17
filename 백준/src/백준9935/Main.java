@@ -75,7 +75,7 @@ class Solution {
 }
 
 public class Main {
-
+    
     private static String input;
     private static String target;
 

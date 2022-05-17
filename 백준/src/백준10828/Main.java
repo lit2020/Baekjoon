@@ -1,8 +1,8 @@
-/**
- * 05/06/2022
+/*
+ * 2022.05.06 
  */
 
-package πÈ¡ÿ10828;
+package Î∞±Ï§Ä10828;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
