@@ -14,27 +14,28 @@ import java.util.Random;
 class Test {
 
     // Variables for sorting order
-    static final boolean reverseOrder = true;
+    static final boolean reverseOrder = true ;
     static final Comparator<Integer> c = Collections.reverseOrder();
 
     // Instances of Sorting Class
     // O(n^2)
     static final BubbleSort<Integer> bs = new BubbleSort<Integer>(reverseOrder);
     static final InsertionSort<Integer> is = new InsertionSort<Integer>(reverseOrder);
+    static final BinaryInsertionSort<Integer> bis = new BinaryInsertionSort<Integer>(reverseOrder);
     static final SelectionSort<Integer> ss = new SelectionSort<Integer>(reverseOrder);
     // O(nlgn)
     static final HeapSort<Integer> hs = new HeapSort<Integer>(reverseOrder);
     static final MergeSort<Integer> ms = new MergeSort<Integer>(reverseOrder);
     static final QuickSort<Integer> qs = new QuickSort<Integer>(reverseOrder);
 
-    static final Sort<Integer> sortMethod = hs;
+    static final Sort<Integer> sortMethod = bis;
 
     // Variables for debug by random input
     static final boolean mode_random = true;
     static final Random random = new Random();
-    static final int T_num = 20;
-    static final int T_SIZE = 10;
-    static final int MAX_VALUE = 50;
+    static final int T_num = 100;
+    static final int T_SIZE = 100;
+    static final int MAX_VALUE = 150;
     static final int MIN_VALUE = 0;
     static final int RANGE = MAX_VALUE - MIN_VALUE;
     static Integer[] ARRAY = new Integer[T_SIZE];

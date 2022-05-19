@@ -2,9 +2,9 @@
  * SOLVED : Time Over
  * DATE : 2022.05.13
  * USER : KI-WOONG KIM
- * FROM : https://www.acmicpc.net/problem/1202
- * ALGORITMN : Greedy, Sorting
- * NOTE :
+ * FROM : https://www.acmicpc.net/problem/1202 (보석 도둑)
+ * ALGORITMN : Greedy, Sorting, Data structure, PriorityQueue
+ * NOTE : 
  */
 
 package 백준1202;
