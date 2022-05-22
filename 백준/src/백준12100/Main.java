@@ -273,6 +273,7 @@ public class Main {
 	    String[] line = br.readLine().split(" ");
 	    int[] arr = Arrays.stream(line).mapToInt(Integer::parseInt).toArray();
 	    board.values[i] = arr;
+	    
 	}
     }
 }
