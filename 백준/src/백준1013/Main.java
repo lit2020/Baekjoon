@@ -1,5 +1,5 @@
 /**
- * SOLVED : True
+ * SOLVED : Solved
  * DATE : 2022.05.21
  * USER : KI-WOONG KIM
  * FROM : https://www.acmicpc.net/problem/1013 (Contact)
